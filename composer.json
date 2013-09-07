@@ -1,0 +1,26 @@
+{
+    "name": "micro/talk",
+    "description": "Simple Forum/Discussionboard application",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Sebastiano Bellinzis",
+            "email": "mail@sebastiano.me"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/controllers",
+            "src/models"
+        ],
+        "psr-0": {
+            "Micro\\Talk": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
