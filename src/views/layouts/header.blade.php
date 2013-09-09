@@ -29,6 +29,9 @@
                         </ul>
                     </li>
 
+                    <li><a href="/{{ $talkRoute }}/write">Write</a></li>
+
+
                     @if( Auth::user()->role == 10 )
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">Administration <b class="caret"></b></a>

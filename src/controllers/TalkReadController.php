@@ -1,12 +1,17 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: sebastiano
- * Date: 07-09-13
- * Time: 00:11
- * To change this template use File | Settings | File Templates.
- */
 
-class TalkReadController {
+class TalkReadController extends TalkBaseController {
+
+    public function getIndex()
+    {
+        return Redirect::to( '/'.Config::get('talk::routes.base').'/list' );
+    }
+
+    public function missingMethod( $parameters = array() )
+    {
+        $post = TalkPost::whereSlug( $parameters[0] )->first();
+
+        $this->layout->content = View::make( 'talk::read.post',compact('post'));
+    }
 
 }

@@ -38,3 +38,6 @@ body {
     border-top-right-radius: 0;
     margin-bottom: 10px;
 }
+
+/** GENERAL **/
+.well.even{ background-image: linear-gradient(to bottom, #D8D8D8 0px, #F5F5F5 100%); }

@@ -28,6 +28,8 @@ class TalkServiceProvider extends ServiceProvider {
         // register the package
         $this->package('micro/talk');
 
+        $this->themeSetup();
+
         $this->viewShares();
 
         $this->filters();
@@ -58,6 +60,15 @@ class TalkServiceProvider extends ServiceProvider {
     public function provides()
     {
         return array('talk');
+    }
+
+
+    public function themeSetup()
+    {
+        if( true === Config::get('talk::theme.own') )
+        {
+            View::addNamespace('talk', app_path().'/views/talk/'.Config::get('talk::theme.name') );
+        }
     }
 
 

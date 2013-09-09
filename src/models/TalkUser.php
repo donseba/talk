@@ -53,4 +53,10 @@ class TalkUser extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->email;
     }
+
+
+    public function post()
+    {
+        return $this->hasMany('TalkPost');
+    }
 }

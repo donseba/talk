@@ -15,5 +15,10 @@ return array(
 
     'routes' => array(
         'base' => 'talk',
+    ),
+
+    'theme' => array(
+        'own'  => false,
+        'name' => 'default', // app/views/talk/default/
     )
 );

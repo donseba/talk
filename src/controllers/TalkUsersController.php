@@ -11,7 +11,7 @@ class TalkUsersController extends TalkBaseController{
     }
 
 
-    public function getView( $id = 0 )
+    public function getShow( $id = 0 )
     {
         $user = TalkUser::findOrFail($id);
 
