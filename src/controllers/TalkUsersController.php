@@ -11,9 +11,9 @@ class TalkUsersController extends TalkBaseController{
     }
 
 
-    public function getShow( $id = 0 )
+    public function missingMethod( $parameters = array() )
     {
-        $user = TalkUser::findOrFail($id);
+        $user = TalkUser::findOrFail($parameters[0]);
 
         $this->layout->content = View::make('talk::users.show',compact('user'));
     }

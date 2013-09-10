@@ -6,7 +6,8 @@ class TalkHomeController extends TalkBaseController {
     {
         $tags       = TalkTag::orderBy('name')->whereActive(1)->get();
         $categories = TalkCategory::orderBy('name')->whereActive(1)->get();
-        $posts      = TalkPost::orderBy('created_at', 'DESC')->take(5)->get();
+
+        $posts      = TalkPost::orderBy('created_at', 'DESC')->take(10)->get();
 
         $this->layout->content = View::make( 'talk::home.index')
             ->with('tags', $tags)

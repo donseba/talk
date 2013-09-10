@@ -79,7 +79,7 @@ class TalkServiceProvider extends ServiceProvider {
      */
     public function viewShares()
     {
-        View::share('talkTitle', 'Time To Micro Talk!' );
+        View::share('talkTitle', 'Micro Talk' );
         View::share('talkRoute', Config::get('talk::routes.base') );
     }
 

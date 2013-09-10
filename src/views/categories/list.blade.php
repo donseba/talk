@@ -1,11 +1,13 @@
+<h2>Posts by Category : {{ $category->name }}</h2>
+
 <div>
-@unless($posts)
+    @unless($posts)
 
-<div class="bs-callout bs-callout-danger">
-    <h4>No posts!</h4>
-</div>
+    <div class="bs-callout bs-callout-danger">
+        <h4>No posts!</h4>
+    </div>
 
-@else
+    @else
 
     <div class="list-group">
         @foreach( $posts as $key => $post )
@@ -19,7 +21,7 @@
         @endforeach
     </div>
 
-{{ $posts->links() }}
-@endunless
+    {{ $posts->links() }}
+    @endunless
 
 </div>

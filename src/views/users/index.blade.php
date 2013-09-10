@@ -6,8 +6,8 @@
 
 @else
 
-@foreach($users as $user)
-<div><a href="/{{ $talkRoute }}/users/show/{{ $user->id }}">{{ $user->username }}</div>
-@endforeach
+    @foreach($users as $user)
+    <div><a href="/{{ $talkRoute }}/users/{{ $user->id }}">{{ $user->username }}</div>
+    @endforeach
 
 @endunless

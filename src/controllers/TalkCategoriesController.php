@@ -14,6 +14,14 @@ class TalkCategoriesController extends TalkBaseController{
 
     public function missingMethod( $parameters = array() )
     {
-        $this->layout->content = 'Get posts by category with slug <strong>'.$parameters[0].'</strong>';
+        $category = TalkCategory::whereSlug( $parameters[0] )->whereActive(1)->first();
+
+        $posts = null;
+        if( null != $category )
+        {
+            $posts = $category->posts()->paginate(15);
+        }
+
+        $this->layout->content = View::make( 'talk::categories.list',compact('posts'))->with('category', $category);
     }
 }
