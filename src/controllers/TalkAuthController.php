@@ -38,9 +38,9 @@ class TalkAuthController extends TalkBaseController{
     }
 
 
-    public function postIndex()
+    public function getRegister()
     {
-
+        $this->layout->content = View::make( 'talk::auth.register' );
     }
 
 

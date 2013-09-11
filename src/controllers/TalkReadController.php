@@ -11,7 +11,12 @@ class TalkReadController extends TalkBaseController {
     {
         $post = TalkPost::whereSlug( $parameters[0] )->first();
 
-        $this->layout->content = View::make( 'talk::read.post',compact('post'));
+        if( null != $post )
+        {
+            $comments = TalkPost::where( 'parent_id', '=', $post->id )->get();
+
+            $this->layout->content = View::make( 'talk::read.post',compact('post', 'comments'));
+        }
     }
 
 }

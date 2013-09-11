@@ -11,12 +11,11 @@ class TalkWriteController extends TalkBaseController{
         // get available Categories
         $categories = TalkCategory::select('id', 'name')->whereActive(1)->lists('name', 'id');
 
-
         $this->layout->content = View::make( 'talk::write.index')->with('tags', $tags)->with('categories', $categories);
     }
 
 
-    public function postIndex()
+    public function postIndex( $id = 0 )
     {
         $input = (object) Input::only('title', 'content', 'tags', 'category_id');
 
@@ -39,6 +38,35 @@ class TalkWriteController extends TalkBaseController{
 
                 return Redirect::to( Config::get('talk::routes.base').'/read/'.$post->slug );
             }
+        }
+    }
+
+
+    public function getReply( $id = 0 )
+    {
+        $this->layout->content = View::make( 'talk::write.reply');
+    }
+
+
+    public function postReply( $id = 0 )
+    {
+        $parent = TalkPost::findOrFail( $id );
+
+        if( $parent )
+        {
+            $input = (object) Input::only('content');
+
+            $post               = new TalkPost;
+            $post->title        = '';
+            $post->content      = $input->content;
+            $post->category_id  = $parent->category_id;
+            $post->parent_id    = $parent->id;
+            $post->user_id      = Auth::user()->id;
+        }
+
+        if( $post->save() )
+        {
+            return Redirect::to( Config::get('talk::routes.base').'/read/'.$parent->slug.'/#post-'.$post->id );
         }
     }
 }
