@@ -19,7 +19,7 @@ class TalkCategoriesController extends TalkBaseController{
         $posts = null;
         if( null != $category )
         {
-            $posts = $category->posts()->paginate(15);
+            $posts = $category->posts()->whereParent_id(0)->paginate(15);
         }
 
         $this->layout->content = View::make( 'talk::categories.list',compact('posts'))->with('category', $category);

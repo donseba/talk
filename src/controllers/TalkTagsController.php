@@ -18,8 +18,21 @@ class TalkTagsController extends TalkBaseController{
     }
 
 
+//    public function missingMethod( $parameters = array() )
+//    {
+//        $this->layout->content = 'Get posts by tag with slug <strong>'.$parameters[0].'</strong>';
+//    }
+
     public function missingMethod( $parameters = array() )
     {
-        $this->layout->content = 'Get posts by tag with slug <strong>'.$parameters[0].'</strong>';
+        $tag = TalkTag::whereSlug( $parameters[0] )->whereActive(1)->first();
+
+        $posts = null;
+        if( null != $tag )
+        {
+            $posts = $tag->posts()->whereParent_id(0)->paginate(15);
+        }
+
+        $this->layout->content = View::make( 'talk::tags.list',compact('posts'))->with('tag', $tag);
     }
 }

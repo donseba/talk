@@ -34,7 +34,18 @@ class TalkWriteController extends TalkBaseController{
             if( $post->save() )
             {
                 // ToDo !! Do something with the tags!
-                // $tags = Input::only('tags');
+                $tags = Input::only('tags');
+
+                if( is_array( $tags ) )
+                {
+                    foreach( $tags['tags'] AS $tag_id )
+                    {
+                        $postTag = new TalkPostTag;
+                        $postTag->post_id = $post->id;
+                        $postTag->tag_id  = $tag_id;
+                        $postTag->save();
+                    }
+                }
 
                 return Redirect::to( Config::get('talk::routes.base').'/read/'.$post->slug );
             }
